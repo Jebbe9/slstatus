@@ -67,7 +67,7 @@ static const struct arg args[] = {
 	/* function format          argument */
 	{ cpu_perc, "  [ CPU    %s%% ]",	NULL	},
 	{ ram_perc, "  [ RAM    %s%%]  ",	NULL	},
-	{ run_command, "[   %s ] ", "df -h | awk 'NR==8 { print $3}'" },
+	{ run_command, "[   %s ] ", "df -h | awk 'NR==8 { print $3, $5}'" },
 	{ run_command, " [  %s ] ",  "pacman -Q | wc -l" },
 	{ run_command, " [  %4s ]  ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1" },
 	{ run_command, "[  %s ] ",  "netctl list | grep '*' | sed 's/*//g'" }, 
