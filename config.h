@@ -68,7 +68,7 @@ static const struct arg args[] = {
 	{ cpu_perc, "  [ CPU    %s%% ]",	NULL	},
 	{ ram_perc, "  [ RAM    %s%% ]  ",	NULL	},
 	{ run_command, "[  %s ] ", "df -h | awk 'NR==2 { print $4 }'" },
-	{ run_command, " [  %4s ]  ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command, " [  %s ]  ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
 	{ datetime, "[  %s]", "%F %T " },
 	{ uptime, "  [  %s ] ", "uptime -p | sed 's/up//g'"},
 };
