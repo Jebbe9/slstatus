@@ -65,18 +65,26 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc, 	"|  %s%% | ",	NULL	},
-	{ ram_perc, 	"|  %s%% | ",	NULL	},
 
-	{ run_command,  "|  %s | ", "df -h | awk 'NR==5 { print $4 }'" },
+	/* "Valmiina olevat." Tässäkin käytetään tyylii vaan grep ja sed. */
+	{ cpu_perc, 	"[  %s%% ",	NULL	},
+	{ ram_perc, 	"|  %s%% ",	NULL	},
 
+	/* Checkkaa muistin ssd:ltä, perus awk settii */
+	{ run_command,  "|  %s ", "df -h | awk 'NR==5 { print $4 }'" },
+
+	/* Nää kaks kuuluu samaan "blockkiin" tavallaan */
+	/* Erottaa mun explicitly lataamat kauttaviivalla niistä ja niiden "riippuvuuksista" */
 	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
-	{ run_command,  "/%s | ", "xbps-query -l | wc -l"},
+	{ run_command,  "/%s ", "xbps-query -l | wc -l"},
 
-	{ run_command,  "|  %s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-	{ run_command,	"|  %s | ", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
-	{ run_command,  "| %s | ", "dwmvpn"},
+	{ run_command,  "|  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command,	"|  %s ", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
 
-	{ datetime, 	"|  %s| ", "%F %T " },
-	{ uptime, 	"|  %s | ", "uptime -p | sed 's/up//g'"},
+	/* Juoksee mun vpn scriptin - perus grep if statement */
+	{ run_command,  "| %s ", "dwmvpn"},
+
+	/* Kans vamiina, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
+	{ datetime, 	"|  %s", "%F %T " },
+	{ uptime, 	"|  %s ] ", "uptime -p | sed 's/up//g'"},
 };
