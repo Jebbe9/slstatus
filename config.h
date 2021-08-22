@@ -65,10 +65,18 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc, "  [ CPU    %s%% ]",	NULL	},
-	{ ram_perc, "  [ RAM    %s%% ]  ",	NULL	},
-	{ run_command, "[  %s ] ", "df -h | awk 'NR==5 { print $4 }'" },
-	{ run_command, " [  %s ]  ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-	{ datetime, "[  %s]", "%F %T " },
-	{ uptime, "  [  %s ] ", "uptime -p | sed 's/up//g'"},
+	{ cpu_perc, 	"|  %s%% | ",	NULL	},
+	{ ram_perc, 	"|  %s%% | ",	NULL	},
+
+	{ run_command,  "|  %s | ", "df -h | awk 'NR==5 { print $4 }'" },
+
+	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
+	{ run_command,  "/%s | ", "xbps-query -l | wc -l"},
+
+	{ run_command,  "|  %s | ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command,	"|  %s | ", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
+	{ run_command,  "| %s | ", "dwmvpn"},
+
+	{ datetime, 	"|  %s| ", "%F %T " },
+	{ uptime, 	"|  %s | ", "uptime -p | sed 's/up//g'"},
 };
