@@ -78,8 +78,15 @@ static const struct arg args[] = {
 	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
 	{ run_command,  "/%s ", "xbps-query -l | wc -l"},
 
+	/* Funky awk settii, ei ollu oma */
 	{ run_command,  "|  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+
+	/* Tää oli kiva hoksaus! - greppaa wpa_cli:n outputista currentin ja pipee awkkiin sen viel */
 	{ run_command,	"|  %s ", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
+
+	/* Pipee acpi outputin awkkiin ja sit viel ottaa pilkun pois sedillä */
+	/* LAPTOP MODULE */
+	//{ run_command,  "| ICON%s ", "acpi | awk '{ print $4 }' | sed 's/,//'"},
 
 	/* Juoksee mun vpn scriptin - perus grep if statement */
 	{ run_command,  "| %s ", "dwmvpn"},
