@@ -86,7 +86,7 @@ static const struct arg args[] = {
 
 	/* Pipee acpi outputin awkkiin ja sit viel ottaa pilkun pois sedillä */
 	/* LAPTOP MODULE */
-	//{ run_command,  "| ICON%s ", "acpi | awk '{ print $4 }' | sed 's/,//'"},
+//	{ run_command,	"| %s", "dwmbattery"},
 
 	/* Juoksee mun vpn scriptin - perus grep if statement */
 	{ run_command,  "| %s ", "dwmvpn"},
