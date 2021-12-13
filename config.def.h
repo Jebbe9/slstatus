@@ -65,10 +65,30 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc, "  [ CPU    %s%% ]",	NULL	},
-	{ ram_perc, "  [ RAM    %s%% ]  ",	NULL	},
-	{ run_command, "[  %s ] ", "df -h | awk 'NR==2 { print $4 }'" },
-	{ run_command, " [  %s ]  ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-	{ datetime, "[  %s]", "%F %T " },
-	{ uptime, "  [  %s ] ", "uptime -p | sed 's/up//g'"},
+
+	/* "Valmiina olevat." Tässäkin käytetään tyylii vaan grep ja sed. */
+	{ cpu_perc, 	"[  %s%% ",	NULL	},
+	{ ram_perc, 	"|  %s%% ",	NULL	},
+
+	/* Checkkaa muistin ssd:ltä, perus awk settii */
+	{ run_command,  "| %s ", "dwmmemory"},
+
+	/* Nää kaks kuuluu samaan "blockkiin" tavallaan */
+	/* Erottaa mun explicitly lataamat kauttaviivalla niistä JA niiden "riippuvuuksista" */
+	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
+	{ run_command,  "/%s ", "xbps-query -l | wc -l"},
+
+	{ run_command,  "|  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+
+
+	{ run_command,  "| %s", "dwmbattery"},
+
+	{ run_command,	"| %s ", "dwmwifi"},
+
+	/* Juoksee mun vpn scriptin - perus grep if statement */
+	{ run_command,  "| %s ", "dwmvpn"},
+
+	/* Kans valmiina toi date, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
+	{ datetime, 	"|  %s", "%F %T " },
+	{ uptime, 	"|  %s ] ", "uptime -p | sed 's/up//g'"},
 };

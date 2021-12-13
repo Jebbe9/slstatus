@@ -71,20 +71,24 @@ static const struct arg args[] = {
 	{ ram_perc, 	"|  %s%% ",	NULL	},
 
 	/* Checkkaa muistin ssd:ltä, perus awk settii */
-	{ run_command,  "|  %s ", "df -h | awk 'NR==5 { print $4 }'" },
+	{ run_command,  "| %s ", "dwmmemory"},
 
 	/* Nää kaks kuuluu samaan "blockkiin" tavallaan */
-	/* Erottaa mun explicitly lataamat kauttaviivalla niistä ja niiden "riippuvuuksista" */
+	/* Erottaa mun explicitly lataamat kauttaviivalla niistä JA niiden "riippuvuuksista" */
 	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
 	{ run_command,  "/%s ", "xbps-query -l | wc -l"},
 
 	{ run_command,  "|  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-	{ run_command,	"|  %s ", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
+
+
+	{ run_command,  "| %s", "dwmbattery"},
+
+	{ run_command,	"| %s ", "dwmwifi"},
 
 	/* Juoksee mun vpn scriptin - perus grep if statement */
 	{ run_command,  "| %s ", "dwmvpn"},
 
-	/* Kans vamiina, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
+	/* Kans valmiina toi date, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
 	{ datetime, 	"|  %s", "%F %T " },
 	{ uptime, 	"|  %s ] ", "uptime -p | sed 's/up//g'"},
 };
