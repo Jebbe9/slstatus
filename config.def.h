@@ -67,28 +67,29 @@ static const struct arg args[] = {
 	/* function format          argument */
 
 	/* "Valmiina olevat." Tässäkin käytetään tyylii vaan grep ja sed. */
-	{ cpu_perc, 	"[  %s%% ",	NULL	},
-	{ ram_perc, 	"|  %s%% ",	NULL	},
+	{ cpu_perc, 	"  %s%% ",	NULL	},
+	{ ram_perc, 	"  %s%% ",	NULL	},
 
 	/* Checkkaa muistin ssd:ltä, perus awk settii */
-	{ run_command,  "| %s ", "dwmmemory"},
+//	{ run_command,  " ~/: %s |", "dwmmemory"},
 
 	/* Nää kaks kuuluu samaan "blockkiin" tavallaan */
 	/* Erottaa mun explicitly lataamat kauttaviivalla niistä JA niiden "riippuvuuksista" */
-	{ run_command,  "|  %s", "xbps-query -m | wc -l"},
-	{ run_command,  "/%s ", "xbps-query -l | wc -l"},
+//	{ run_command,  " PKG: %s |", "xbps-query -m | wc -l"},
+	{ run_command,  "  %s ", "xbps-query -l | wc -l"},
 
-	{ run_command,  "|  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command,  "  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
 
 
-	{ run_command,  "| %s", "dwmbattery"},
+	{ battery_perc,  "  %s%% ", "BAT0"},
 
-	{ run_command,	"| %s ", "dwmwifi"},
+	{ run_command,	" %s ", "dwmwifi"},
 
 	/* Juoksee mun vpn scriptin - perus grep if statement */
-	{ run_command,  "| %s ", "dwmvpn"},
+	//{ run_command,  "| %s ", "dwmvpn"},
 
 	/* Kans valmiina toi date, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
-	{ datetime, 	"|  %s", "%F %T " },
-	{ uptime, 	"|  %s ] ", "uptime -p | sed 's/up//g'"},
+//	{ uptime, 	" Up: %s  |", "uptime -p | sed 's/up//g'"},
+	{ datetime, 	"  %s ", "%x"},
+	{ datetime,	"  %s ", "%H:%M"},
 };
