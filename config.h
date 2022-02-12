@@ -66,30 +66,18 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 
-	/* "Valmiina olevat." Tässäkin käytetään tyylii vaan grep ja sed. */
-	{ cpu_perc, 	"  %s%% ",	NULL	},
-	{ ram_perc, 	"  %s%% ",	NULL	},
-
-	/* Checkkaa muistin ssd:ltä, perus awk settii */
+	{ run_command,  " %s /", "dwmmusic"},
+//	{ run_command,  "  %s /", "dwmmusic"},
+	{ cpu_perc, 	"  %s%% /",	NULL	},
+	{ ram_perc, 	"  %s%% /",	NULL	},
 //	{ run_command,  " ~/: %s |", "dwmmemory"},
-
-	/* Nää kaks kuuluu samaan "blockkiin" tavallaan */
-	/* Erottaa mun explicitly lataamat kauttaviivalla niistä JA niiden "riippuvuuksista" */
 //	{ run_command,  " PKG: %s |", "xbps-query -m | wc -l"},
-	{ run_command,  "  %s ", "xbps-query -l | wc -l"},
-
-	{ run_command,  "  %s ", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-
-
-	{ battery_perc,  "  %s%% ", "BAT0"},
-
-	{ run_command,	" %s ", "dwmwifi"},
-
-	/* Juoksee mun vpn scriptin - perus grep if statement */
-	//{ run_command,  "| %s ", "dwmvpn"},
-
-	/* Kans valmiina toi date, eikä outputtaa samaa vaikka laittaisit noi samal taval terminaalin, esim. "$(date "+%F %T")"*/
+	{ run_command,  "  %s /", "xbps-query -l | wc -l"},
+	{ run_command,  "  %s /", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ battery_perc,  "  %s%% /", "BAT0"},
+	{ run_command,	" %s /", "dwmwifi"},
+//	{ run_command,  "| %s ", "dwmvpn"},
 //	{ uptime, 	" Up: %s  |", "uptime -p | sed 's/up//g'"},
-	{ datetime, 	"  %s ", "%x"},
+	{ datetime, 	"  %s /", "%x"},
 	{ datetime,	"  %s ", "%H:%M"},
 };
