@@ -66,16 +66,16 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 
-	{ run_command,  " %s /", "dwmmusic"},
 //	{ run_command,  "  %s /", "dwmmusic"},
-	{ cpu_perc, 	"  %s%% /",	NULL	},
+	{ cpu_perc, 	"   %s%% /",	NULL	},
 	{ ram_perc, 	"  %s%% /",	NULL	},
 //	{ run_command,  " ~/: %s |", "dwmmemory"},
 //	{ run_command,  " PKG: %s |", "xbps-query -m | wc -l"},
-	{ run_command,  "  %s /", "xbps-query -l | wc -l"},
+	{ run_command,  "  %s /", "qlist -I | wc -l"},
 	{ run_command,  "  %s /", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
-	{ battery_perc,  "  %s%% /", "BAT0"},
-	{ run_command,	" %s /", "dwmwifi"},
+	{ battery_perc, "  %s%% /", "BAT0"},
+//	{ run_command,	" %s /", "dwmwifi"},
+//	{ wifi_essid,  	" %s /", "wlan0"}, 
 //	{ run_command,  "| %s ", "dwmvpn"},
 //	{ uptime, 	" Up: %s  |", "uptime -p | sed 's/up//g'"},
 	{ datetime, 	"  %s /", "%x"},
