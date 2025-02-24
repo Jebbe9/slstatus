@@ -66,17 +66,19 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function format          argument */
 
-//	{ run_command,  "  %s /", "dwmmusic"},
-	{ cpu_perc, 	"   %s%% |",	NULL	},
-	{ ram_perc, 	"  %s%% |",	NULL	},
+	{ cpu_perc, 	"[  %s%% |",	NULL	},
+	{ ram_perc, 	"  %s%% ]",	NULL	},
 //	{ run_command,  " ~/: %s |", "dwmmemory"},
-	{ run_command,  "  %s |", "df -h | awk 'NR==2 { print $4 }'"},
-	{ run_command,  "  %s |", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command,  "[ /:%s ]", "df -h | awk 'NR==5 { print $4 }'"},
+	{ run_command,  "[ %s ]",  "dwmvpn"},
+//	{ run_command,  "  %s /", "xbps-query -l | wc -l"},
+	{ run_command,  "[ 󰕾 %s ]", "amixer sget Master | awk -F\"[][]\" '/%/ { print $2 }' | head -n1"},
+	{ run_command,  "[ %s ]", "dwmmoc"},
+
 //	{ battery_perc, "  %s%% |", "BAT0"},
 //	{ run_command,	"  %s |", "wpa_cli list_networks | grep CURRENT | awk '{print $2}'"},
 //	{ wifi_essid,  	" %s /", "wlan0"}, 
-//	{ run_command,  "| %s ", "dwmvpn"},
-	{ uptime, 	"  %s |", "uptime -p | sed 's/up//g'"},
-	{ datetime, 	"  %s |", "%x"},
-	{ datetime,	"  %s ", "%H:%M"},
+//	{ uptime, 	"[  %s ]", "uptime -p | sed 's/up//g'"},
+	{ datetime, 	"[  %s |", "%a, %d/%m/%g"},
+	{ datetime,	"  %s ]", "%T"},
 };
